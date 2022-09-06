@@ -1,4 +1,13 @@
-function SearchField() {
+function SearchField(props) {
+  let searchTimeout;
+
+  function handleOnChange(e) {
+    clearTimeout(searchTimeout);
+
+    searchTimeout = setTimeout(() => {
+      props.doSearch(e.target.value);
+    }, 500);
+  }
   return (
     <form className="flex items-center mb-2">
       <label htmlFor="search" className="sr-only">
@@ -24,8 +33,8 @@ function SearchField() {
           type="text"
           id="search"
           className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-          placeholder="Search Mockups, Logos, Design Templates..."
-          required
+          placeholder="Search book by title or author"
+          onChange={handleOnChange}
         />
       </div>
     </form>

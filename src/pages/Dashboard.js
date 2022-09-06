@@ -15,6 +15,7 @@ function DashboardPage() {
   const [size] = useState(10);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios.get("/fee-assessment-categories").then((res) => {
@@ -67,10 +68,15 @@ function DashboardPage() {
     setPage((prevPage) => prevPage + 1);
   }
 
+  function handleSearch(search) {
+    setSearch(search);
+    setIsLastPage(true);
+  }
+
   return (
     <div className="container mx-auto">
       <div className="sticky top-0 rounded bg-white">
-        <SearchField/>
+        <SearchField doSearch={handleSearch} />
         {categories.map((category) => {
           return (
             <button
@@ -85,11 +91,23 @@ function DashboardPage() {
         })}
       </div>
       <div className="mt-3 grid grid-cols-2 gap-6 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
-        {books.map((book) => {
-          return (
-            <BookCard key={book.id} data={book} showDetail={showBookDetail} />
-          );
-        })}
+        {books
+          .filter(
+            (book) =>
+              book.title
+                .trim()
+                .toLowerCase()
+                .includes(search.trim().toLowerCase()) ||
+              book.authors[0]
+                .trim()
+                .toLowerCase()
+                .includes(search.trim().toLowerCase())
+          )
+          .map((book) => {
+            return (
+              <BookCard key={book.id} data={book} showDetail={showBookDetail} />
+            );
+          })}
         {isLoading ? (
           <>
             <BookSkeletonCard />
