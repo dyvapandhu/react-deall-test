@@ -5,11 +5,14 @@ export default function ModalDetail(props) {
   function closeModal() {
     props.closeModal();
   }
+  function getDuration(audioLength) {
+    return Math.floor(audioLength / 60);
+  }
 
   return (
     <>
       <Transition appear show={props.isModalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-50" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -19,7 +22,7 @@ export default function ModalDetail(props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black/30" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex items-center justify-center p-4">
@@ -58,7 +61,7 @@ export default function ModalDetail(props) {
                     </svg>
                     <span className="sr-only">Close modal</span>
                   </button>
-                  <div className="overflow-auto mt-2 grid grid-cols-2 gap-6 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+                  <div className="mt-2 grid grid-cols-2 gap-6 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
                     <div className="flex flex-col-3">
                       <img
                         className="rounded"
@@ -70,10 +73,23 @@ export default function ModalDetail(props) {
                       <p className="font-bold text-base">
                         {props.book.authors[0]}
                       </p>
-                      <p className="mb-4 font-bold text-xs">
+                      <p className="mb-2 font-bold text-xs">
                         {props.book.category_name}
                       </p>
-                      <p className="mb-1 font-bold text-xs">What's it about?</p>
+                      <div>
+                        <hr />
+                        <p className="mb-1 mt-1 font-bold text-xs">
+                          {`${
+                            props.book.sections.length
+                          } chapters | ${getDuration(
+                            props.book.audio_length
+                          )} min`}
+                        </p>
+                        <hr />
+                        <p className="mt-3 mb-1 font-bold text-xs">
+                          What's it about?
+                        </p>
+                      </div>
                       <p className="mb-3 text-xs">{props.book.description}</p>
                       <p className="mb-1 font-bold text-xs">What's inside?</p>
                       <ol className="list-decimal list-inside text-xs">

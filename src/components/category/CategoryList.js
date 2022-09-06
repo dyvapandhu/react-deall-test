@@ -7,7 +7,7 @@ function CategoryList(props) {
     }
   }
   return (
-    <>
+    <div className="overflow-x-auto">
       {props.categories.map((category) => {
         return (
           <button
@@ -20,7 +20,7 @@ function CategoryList(props) {
           </button>
         );
       })}
-    </>
+    </div>
   );
 }
 
