@@ -1,8 +1,8 @@
-import BookCard from "../components/book/BookCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import BookSkeletonCard from "../components/book/BookSkeletonCard";
+import BookSkeletonItem from "../components/book/BookSkeletonItem";
 import SearchField from "../components/SearchField";
+import BookList from "../components/book/BookList";
 // import BookModal from "../components/book/BookModal";
 
 function DashboardPage() {
@@ -31,7 +31,7 @@ function DashboardPage() {
           `/fee-assessment-books?categoryId=${categoryId}&page=${page}&size=${size}`
         )
         .then((res) => {
-          setBooks((prevBooks, index) => [
+          setBooks((prevBooks) => [
             ...prevBooks.map((book) => {
               book.category_name = categoryName;
               return book;
@@ -91,31 +91,19 @@ function DashboardPage() {
         })}
       </div>
       <div className="mt-3 grid grid-cols-2 gap-6 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
-        {books
-          .filter(
-            (book) =>
-              book.title
-                .trim()
-                .toLowerCase()
-                .includes(search.trim().toLowerCase()) ||
-              book.authors[0]
-                .trim()
-                .toLowerCase()
-                .includes(search.trim().toLowerCase())
-          )
-          .map((book) => {
-            return (
-              <BookCard key={book.id} data={book} showDetail={showBookDetail} />
-            );
-          })}
+        <BookList
+          books={books}
+          search={search}
+          showBookDetail={showBookDetail}
+        />
         {isLoading ? (
           <>
-            <BookSkeletonCard />
-            <BookSkeletonCard />
-            <BookSkeletonCard />
-            <BookSkeletonCard />
-            <BookSkeletonCard />
-            <BookSkeletonCard />
+            <BookSkeletonItem />
+            <BookSkeletonItem />
+            <BookSkeletonItem />
+            <BookSkeletonItem />
+            <BookSkeletonItem />
+            <BookSkeletonItem />
           </>
         ) : null}
       </div>
