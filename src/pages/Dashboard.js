@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import SearchField from "../components/SearchField";
 import BookList from "../components/book/BookList";
 import BookSkeletonList from "../components/book/BookSkeletonList";
+import CategoryList from "../components/category/CategoryList";
 // import BookModal from "../components/book/BookModal";
 
 function DashboardPage() {
@@ -77,18 +78,11 @@ function DashboardPage() {
     <div className="container mx-auto">
       <div className="sticky top-0 rounded bg-white">
         <SearchField doSearch={handleSearch} />
-        {categories.map((category) => {
-          return (
-            <button
-              key={category.id}
-              type="button"
-              className="m-1 text-gray-900 py-2 px-3 text-xs font-medium hover:text-white bg-white hover:bg-gray-900 ring-1 focus:outline-none rounded-lg text-center"
-              onClick={() => handleSelectCategory(category)}
-            >
-              {category.name}
-            </button>
-          );
-        })}
+        <CategoryList
+          categoryId={categoryId}
+          categories={categories}
+          handleSelectCategory={handleSelectCategory}
+        />
       </div>
       <div className="mt-3 grid grid-cols-2 gap-6 xs:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
         <BookList

@@ -11,7 +11,7 @@ function BookCard(props) {
         <img className="rounded-t-lg" src={props.data.cover_url} alt="" />
       </div>
       <div className="flex flex-col">
-        <p className="px-4 mt-2 mb-2 text-small font-bold tracking-tight text-gray-900">
+        <p className="px-4 mt-2 mb-2 text-small truncate font-bold tracking-tight text-gray-900">
           {props.data.authors[0]}
         </p>
         <p className="px-4 mb-3 text-xs text-gray-700 dark:text-gray-400">
