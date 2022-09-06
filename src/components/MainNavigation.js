@@ -22,7 +22,7 @@ export default function MainNavigation() {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="hidden md:block">
-                      <div className="ml-10 flex items-baseline space-x-4">
+                      <div className="flex items-baseline space-x-4">
                         {navigation.map((item) => (
                           <Link
                             key={item.name}
@@ -30,7 +30,7 @@ export default function MainNavigation() {
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
-                                : "text-gray-700 hover:bg-gray-700 hover:text-gray-300",
+                                : "hover:bg-gray-700 hover:text-white",
                               "px-3 py-2 rounded-md text-sm font-medium"
                             )}
                             aria-current={item.current ? "page" : undefined}
@@ -43,7 +43,7 @@ export default function MainNavigation() {
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
-                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
                         <XMarkIcon
@@ -72,7 +72,7 @@ export default function MainNavigation() {
                         item.current
                           ? "bg-gray-900 text-white"
                           : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block px-3 py-2 rounded-md text-base font-medium"
+                        "block px-3 py-2 rounded-md text-black font-medium"
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >

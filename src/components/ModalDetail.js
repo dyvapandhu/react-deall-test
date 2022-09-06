@@ -96,17 +96,6 @@ export default function ModalDetail(props) {
                         {props.book.sections.map((section, index) => {
                           return <li key={index}>{section.title}</li>;
                         })}
-                        {/* <li>
-                          You might feel like you are being really "organized" o
-                        </li>
-                        <li>
-                          Nested navigation in UIs is a bad idea too, keep
-                          things as flat as possible.
-                        </li>
-                        <li>
-                          Nesting tons of folders in your source code is also
-                          not helpful.
-                        </li> */}
                       </ol>
                     </div>
                   </div>

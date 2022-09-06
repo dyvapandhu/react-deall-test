@@ -22,6 +22,7 @@ function DashboardPage() {
   useEffect(() => {
     axios.get("/fee-assessment-categories").then((res) => {
       setCategories(res.data);
+      handleSelectCategory(res.data[0])
     });
   }, []);
 
@@ -101,7 +102,7 @@ function DashboardPage() {
         <div className="text-center">
           <button
             type="button"
-            className="m-1 text-gray-900 py-2 px-3 text-xs font-medium hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-1 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+            className="m-1 py-2 px-3 text-xs font-medium border hover:text-white border rounded hover:bg-gray-900 focus:ring-1 focus:outline-none focus:ring-gray-300"
             onClick={loadMore}
           >
             Load More

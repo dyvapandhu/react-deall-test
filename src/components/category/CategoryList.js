@@ -13,7 +13,7 @@ function CategoryList(props) {
           <button
             key={category.id}
             type="button"
-            className={`${generateClass(category.id, props.categoryId)} m-1 py-2 px-3 text-xs font-medium hover:text-white hover:bg-gray-900 ring-1 focus:outline-none rounded-lg text-center`}
+            className={`${generateClass(category.id, props.categoryId)} m-1 py-2 px-3 text-xs font-medium border hover:text-white hover:bg-gray-900 rounded-lg text-center`}
             onClick={() => props.handleSelectCategory(category)}
           >
             {category.name}
