@@ -19,7 +19,7 @@ function BookList(props) {
             <BookItem
               key={book.id}
               data={book}
-              showDetail={props.showBookDetail}
+              showDetail={() => props.showBookDetail(book)}
             />
           );
         })}

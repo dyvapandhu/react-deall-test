@@ -4,10 +4,10 @@ import SearchField from "../components/SearchField";
 import BookList from "../components/book/BookList";
 import BookSkeletonList from "../components/book/BookSkeletonList";
 import CategoryList from "../components/category/CategoryList";
-// import BookModal from "../components/book/BookModal";
+import ModalDetail from "../components/ModalDetail";
 
 function DashboardPage() {
-  // const [isModalOpen, setIsModalOpen] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [books, setBooks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
@@ -17,6 +17,7 @@ function DashboardPage() {
   const [isLastPage, setIsLastPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     axios.get("/fee-assessment-categories").then((res) => {
@@ -60,9 +61,13 @@ function DashboardPage() {
     setCategoryId(category.id);
   }
 
-  function showBookDetail() {
-    console.log("selected");
-    // setIsModalOpen(true);
+  function showBookDetail(book) {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
   }
 
   function loadMore() {
@@ -103,7 +108,13 @@ function DashboardPage() {
           </button>
         </div>
       ) : null}
-      {/* <BookModal isModalOpen={isModalOpen} closeModal={closeModal} /> */}
+      {selectedBook ? (
+        <ModalDetail
+          isModalOpen={isModalOpen}
+          book={selectedBook}
+          closeModal={closeModal}
+        />
+      ) : null}
     </div>
   );
 }
