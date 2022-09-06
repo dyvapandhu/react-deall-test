@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import BookSkeletonItem from "../components/book/BookSkeletonItem";
 import SearchField from "../components/SearchField";
 import BookList from "../components/book/BookList";
+import BookSkeletonList from "../components/book/BookSkeletonList";
 // import BookModal from "../components/book/BookModal";
 
 function DashboardPage() {
@@ -96,16 +96,7 @@ function DashboardPage() {
           search={search}
           showBookDetail={showBookDetail}
         />
-        {isLoading ? (
-          <>
-            <BookSkeletonItem />
-            <BookSkeletonItem />
-            <BookSkeletonItem />
-            <BookSkeletonItem />
-            <BookSkeletonItem />
-            <BookSkeletonItem />
-          </>
-        ) : null}
+        {isLoading ? <BookSkeletonList /> : null}
       </div>
       {categoryId && books.length > 0 && !isLastPage ? (
         <div className="text-center">
