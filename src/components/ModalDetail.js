@@ -1,7 +1,19 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import { useContext } from "react";
+import FavoritesContext from "../store/favorites-context";
 
 export default function ModalDetail(props) {
+  const favoritesContextObj = useContext(FavoritesContext);
+  const isItemFavorite = favoritesContextObj.isItemFavorite(props.book.id);
+
+  function handleSwitchFavorite() {
+    if (isItemFavorite) {
+      favoritesContextObj.removeFavorite(props.book.id);
+    } else {
+      favoritesContextObj.addFavorite(props.book);
+    }
+  }
   function closeModal() {
     props.closeModal();
   }
@@ -98,6 +110,13 @@ export default function ModalDetail(props) {
                         })}
                       </ol>
                     </div>
+                    <button
+                      type="button"
+                      className="py-2 px-3 text-xs font-medium border hover:text-white border rounded hover:bg-gray-900 focus:ring-1 focus:outline-none focus:ring-gray-300"
+                      onClick={handleSwitchFavorite}
+                    >
+                      {isItemFavorite ? "Remove to Fav" : "Add to Fav"}
+                    </button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

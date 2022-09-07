@@ -1,9 +1,9 @@
 function BookSkeletonCard() {
   return (
-    <div className="items-center bg-white rounded-lg border cursor-pointer shadow-md mb-4">
-      <div className="flex flex-col-3 justify-center">
+    <div className="animate-pulse items-center bg-white rounded-lg border cursor-pointer shadow-md mb-4">
+      <div className="animate-pulse flex flex-col-3 justify-center">
         <svg
-          className="py-10 w-12 h-50 text-gray-200"
+          className="py-10 w-12 h-50 text-gray-400"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
           fill="currentColor"
@@ -13,10 +13,10 @@ function BookSkeletonCard() {
         </svg>
       </div>
       <div className="flex px-2 py-10 flex-col">
-        <div className="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-        <div className="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-        <div className="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-        <div className="w-8 h-2 bg-gray-200 rounded-full"></div>
+        <div className="h-2 bg-gray-400 rounded-full mb-2.5"></div>
+        <div className="h-2 bg-gray-400 rounded-full mb-2.5"></div>
+        <div className="h-2 bg-gray-400 rounded-full mb-2.5"></div>
+        <div className="w-8 h-2 bg-gray-400 rounded-full"></div>
       </div>
     </div>
   );
