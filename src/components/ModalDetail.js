@@ -14,11 +14,17 @@ export default function ModalDetail(props) {
       favoritesContextObj.addFavorite(props.book);
     }
   }
+
   function closeModal() {
     props.closeModal();
   }
+
   function getDuration(audioLength) {
     return Math.floor(audioLength / 60);
+  }
+
+  function generateFavClass() {
+    return isItemFavorite ? "bg-red-500 text-white" : "text-black bg-white";
   }
 
   return (
@@ -80,6 +86,21 @@ export default function ModalDetail(props) {
                         src={props.book.cover_url}
                         alt=""
                       />
+                      {isItemFavorite ? (
+                        <svg
+                          aria-hidden="true"
+                          className="absolute w-8 h-8 mr-2 text-yellow-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      ) : null}
                     </div>
                     <div className="flex flex-col">
                       <p className="font-bold text-base">
@@ -112,10 +133,27 @@ export default function ModalDetail(props) {
                     </div>
                     <button
                       type="button"
-                      className="py-2 px-3 text-xs font-medium border hover:text-white border rounded hover:bg-gray-900 focus:ring-1 focus:outline-none focus:ring-gray-300"
+                      className={`${generateFavClass()} text-xs px-5 py-2 inline-flex justify-center items-center border hover:text-white border rounded hover:bg-gray-900 focus:ring-1 focus:outline-none focus:ring-gray-300`}
                       onClick={handleSwitchFavorite}
                     >
-                      {isItemFavorite ? "Remove to Fav" : "Add to Fav"}
+                      {!isItemFavorite ? (
+                        <svg
+                          aria-hidden="true"
+                          className="w-5 h-3 mr-2 text-yellow-500"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      ) : null}
+                      <span>
+                        {isItemFavorite ? "Remove to Fav" : "Add to Fav"}
+                      </span>
                     </button>
                   </div>
                 </Dialog.Panel>
